@@ -306,8 +306,7 @@ class MainActivity : AppCompatActivity() {
             val pct = ((calibrationSamples.size / 7f) * 100f).toInt().coerceAtMost(100)
             runOnUiThread {
                 tvBpm.text = bpm.toString()
-                tvVerdict.text = "Calibrating Baseline Pulse... $pct%
-(Keep finger still & relax)"
+                tvVerdict.text = "Calibrating Baseline Pulse... $pct%\n(Keep finger still & relax)"
                 tvVerdict.setTextColor(Color.parseColor("#FFEB3B"))
                 pulseGraph.setWaveColor(Color.parseColor("#FFEB3B"))
             }
@@ -317,8 +316,7 @@ class MainActivity : AppCompatActivity() {
                 isCalibrated = true
                 runOnUiThread {
                     tvBaseline.text = "$baselineBpm BPM"
-                    tvVerdict.text = "✅ BASELINE LOCKED ($baselineBpm BPM)
-Ask your friend a tough question & tap ANALYZE!"
+                    tvVerdict.text = "✅ BASELINE LOCKED ($baselineBpm BPM)\nAsk your friend a tough question & tap ANALYZE!"
                     tvVerdict.setTextColor(Color.parseColor("#00E676"))
                     pulseGraph.setWaveColor(Color.parseColor("#00E676"))
                 }
@@ -373,8 +371,7 @@ Ask your friend a tough question & tap ANALYZE!"
         if (spike >= 7) {
             // LIE DETECTED
             rootContainer.setBackgroundColor(Color.parseColor("#3B0810"))
-            tvVerdict.text = "🚨 LIE DETECTED!
-Heart rate spiked +$spike BPM above baseline!"
+            tvVerdict.text = "🚨 LIE DETECTED!\nHeart rate spiked +$spike BPM above baseline!"
             tvVerdict.setTextColor(Color.parseColor("#FF5252"))
             pulseGraph.setWaveColor(Color.parseColor("#FF1744"))
             vibrateAlert(true)
@@ -382,8 +379,7 @@ Heart rate spiked +$spike BPM above baseline!"
         } else {
             // TRUTH DETECTED
             rootContainer.setBackgroundColor(Color.parseColor("#082616"))
-            tvVerdict.text = "✅ TRUTH DETECTED!
-Pulse remained calm (${if (spike >= 0) "+$spike" else "$spike"} BPM)"
+            tvVerdict.text = "✅ TRUTH DETECTED!\nPulse remained calm (${if (spike >= 0) "+$spike" else "$spike"} BPM)"
             tvVerdict.setTextColor(Color.parseColor("#00E676"))
             pulseGraph.setWaveColor(Color.parseColor("#00E676"))
             vibrateAlert(false)
